@@ -13,6 +13,7 @@
 #include "Hero.h"
 #include "Potion.h"
 #include "MyColor.h"
+#include "main.h"
 
 
 void leftCircleColor(MyColor &color) {
@@ -143,85 +144,15 @@ int main()
 		//----------------------------------------------------------------------------------
 		BeginDrawing();
 
-		DrawText("Color Operator", 325, 50, 20, BLACK);
+		
 
 
 		ClearBackground(RAYWHITE);
-		/*DrawText("Keep your Hero alive by give it a Potion! Press Enter to give it potion", 0, 0, 20, BLACK);
 
-		if (hero.hitPoints > 120) {
-			DrawTexture(ouch1, 100, 100, WHITE);
-		}
-		else if (hero.hitPoints > 90) {
-			DrawTexture(ouch2, 100, 100, WHITE);
-		}
-		else if (hero.hitPoints > 60) {
-			DrawTexture(ouch3, 100, 100, WHITE);
-		}
-		else if (hero.hitPoints > 30) {
-			DrawTexture(ouch4, 100, 100, WHITE);
-		}
-		else if (hero.hitPoints > 0) {
-			DrawTexture(ouch5, 100, 100, WHITE);
-		}
+		//MyHeroExercise(hero, ouch1, ouch2, ouch3, ouch4, ouch5, potion);
 
-		hero.hitPoints--;
+		MyColorExercise(newColor, firstColor, secondColor);
 
-		if (hero.hitPoints < 0) {
-			DrawText("Your Hero Died", 100,100, 20, BLACK);	
-		}
-		else {
-			std::string hitPoints = std::to_string(hero.hitPoints);
-			char const *pchar = hitPoints.c_str();
-			DrawText(pchar, 200, 200, 20, BLACK);
-		}
-
-		if (hero.hitPoints > 150) {
-			hero.hitPoints = 150;
-		}
-		if (IsKeyPressed(KEY_ENTER)) {
-			hero += potion;
-		}*/
-
-		if (IsKeyPressed(KEY_UP)) {
-			newColor = firstColor * secondColor;
-		}
-		if (IsKeyPressed(KEY_DOWN)) {
-			newColor = firstColor / secondColor;
-		}
-		if (IsKeyPressed(KEY_RIGHT)) {
-			newColor = firstColor + secondColor;
-		}
-		if (IsKeyPressed(KEY_LEFT)) {
-			newColor = firstColor - secondColor;
-		}
-
-		DrawText("R    G    B", 350, 250, 20, BLACK);
-		DrawText("Right: Add", 350, 300, 20, BLACK);
-		DrawText("Left: Subtract", 350, 325, 20, BLACK);
-		DrawText("Up: Multiply", 350, 350, 20, BLACK);
-		DrawText("Down: Divde", 350, 375, 20, BLACK);
-		leftCircleColor(firstColor);
-		rightCircleColor(secondColor);
-
-		Color fColor = { (unsigned char)firstColor.r, (unsigned char)firstColor.g, (unsigned char)firstColor.b,(unsigned char)firstColor.a };
-		Color sColor = { (unsigned char)secondColor.r, (unsigned char)secondColor.g, (unsigned char)secondColor.b,(unsigned char)secondColor.a };
-		Color tColor = { (unsigned char)newColor.r, (unsigned char)newColor.g, (unsigned char)newColor.b,(unsigned char)newColor.a };
-
-		Color test = { 255,255,0,255 };
-		DrawCircle(150, 200, 50.f, fColor);
-		DrawCircle(650, 200, 50.f, sColor);
-		DrawCircle(400, 200, 50.f, tColor);
-
-		std::string r = std::to_string(tColor.r);
-		char const *pchar = r.c_str();
-		DrawText(pchar, 350, 275, 20, BLACK);
-		std::string g = std::to_string(tColor.g);
-		char const *pchar1 = g.c_str();
-		DrawText(pchar1, 395, 275, 20, BLACK);
-		std::string b = std::to_string(tColor.b);
-		char const *pchar2 = b.c_str();
-		DrawText(pchar2, 435, 275, 20, BLACK);
 		ClearBackground(RAYWHITE);
 		EndDrawing();
 		//----------------------------------------------------------------------------------
@@ -233,5 +164,89 @@ int main()
 	//---------------------------------------------------------------------------------------
 
 	return 0;
+}
+
+void MyHeroExercise(Hero &hero, const Texture2D &ouch1, const Texture2D &ouch2, const Texture2D &ouch3, const Texture2D &ouch4, const Texture2D &ouch5, Potion &potion)
+{
+	DrawText("Keep your Hero alive by give it a Potion! Press Enter to give it potion", 0, 0, 20, BLACK);
+
+	if (hero.hitPoints > 120) {
+		DrawTexture(ouch1, 100, 100, WHITE);
+	}
+	else if (hero.hitPoints > 90) {
+		DrawTexture(ouch2, 100, 100, WHITE);
+	}
+	else if (hero.hitPoints > 60) {
+		DrawTexture(ouch3, 100, 100, WHITE);
+	}
+	else if (hero.hitPoints > 30) {
+		DrawTexture(ouch4, 100, 100, WHITE);
+	}
+	else if (hero.hitPoints > 0) {
+		DrawTexture(ouch5, 100, 100, WHITE);
+	}
+
+	hero.hitPoints--;
+
+	if (hero.hitPoints < 0) {
+		DrawText("Your Hero Died", 100, 100, 20, BLACK);
+	}
+	else {
+		std::string hitPoints = std::to_string(hero.hitPoints);
+		char const *pchar = hitPoints.c_str();
+		DrawText(pchar, 200, 200, 20, BLACK);
+	}
+
+	if (hero.hitPoints > 150) {
+		hero.hitPoints = 150;
+	}
+	if (IsKeyPressed(KEY_ENTER)) {
+		hero += potion;
+	}
+}
+
+void MyColorExercise(MyColor &newColor, MyColor &firstColor, MyColor &secondColor)
+{
+	DrawText("Color Operator", 325, 50, 20, BLACK);
+
+	if (IsKeyPressed(KEY_UP)) {
+		newColor = firstColor * secondColor;
+	}
+	if (IsKeyPressed(KEY_DOWN)) {
+		newColor = firstColor / secondColor;
+	}
+	if (IsKeyPressed(KEY_RIGHT)) {
+		newColor = firstColor + secondColor;
+	}
+	if (IsKeyPressed(KEY_LEFT)) {
+		newColor = firstColor - secondColor;
+	}
+
+	DrawText("R    G    B", 350, 250, 20, BLACK);
+	DrawText("Right: Add", 350, 300, 20, BLACK);
+	DrawText("Left: Subtract", 350, 325, 20, BLACK);
+	DrawText("Up: Multiply", 350, 350, 20, BLACK);
+	DrawText("Down: Divde", 350, 375, 20, BLACK);
+	leftCircleColor(firstColor);
+	rightCircleColor(secondColor);
+
+	Color fColor = { (unsigned char)firstColor.r, (unsigned char)firstColor.g, (unsigned char)firstColor.b,(unsigned char)firstColor.a };
+	Color sColor = { (unsigned char)secondColor.r, (unsigned char)secondColor.g, (unsigned char)secondColor.b,(unsigned char)secondColor.a };
+	Color tColor = { (unsigned char)newColor.r, (unsigned char)newColor.g, (unsigned char)newColor.b,(unsigned char)newColor.a };
+
+	Color test = { 255,255,0,255 };
+	DrawCircle(150, 200, 50.f, fColor);
+	DrawCircle(650, 200, 50.f, sColor);
+	DrawCircle(400, 200, 50.f, tColor);
+
+	std::string r = std::to_string(tColor.r);
+	char const *pchar = r.c_str();
+	DrawText(pchar, 350, 275, 20, BLACK);
+	std::string g = std::to_string(tColor.g);
+	char const *pchar1 = g.c_str();
+	DrawText(pchar1, 395, 275, 20, BLACK);
+	std::string b = std::to_string(tColor.b);
+	char const *pchar2 = b.c_str();
+	DrawText(pchar2, 435, 275, 20, BLACK);
 }
 

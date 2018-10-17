@@ -139,6 +139,7 @@
   <ItemGroup>
     <ClInclude Include="..\thirdparty\raylib\raylib.h" />
     <ClInclude Include="Hero.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="MyColor.h" />
     <ClInclude Include="Potion.h" />
   </ItemGroup>
