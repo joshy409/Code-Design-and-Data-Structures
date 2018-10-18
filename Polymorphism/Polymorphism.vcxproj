@@ -20,10 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{22E9E48D-DC9F-4A26-9A19-0531C995DCE7}</ProjectGuid>
-    <RootNamespace>Exercise</RootNamespace>
+    <ProjectGuid>{9F6D1552-3662-40B9-9CCE-B44094EED7B3}</ProjectGuid>
+    <RootNamespace>Polymorphism</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
-    <ProjectName>InheritanceExercise</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -136,14 +135,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\thirdparty\raylib\raylib.h" />
-    <ClInclude Include="Button.h" />
-    <ClInclude Include="Sprite.h" />
+    <ClCompile Include="Barbarian.cpp" />
+    <ClCompile Include="EvilEnt.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Necromancer.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Wizard.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Button.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Sprite.cpp" />
+    <ClInclude Include="..\thirdparty\raylib\raylib.h" />
+    <ClInclude Include="Barbarian.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EvilEnt.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="Necromancer.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Wizard.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
