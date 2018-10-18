@@ -5,6 +5,9 @@ class Button :
 {
 public:
 	Button();
+	Button(std::vector<std::string> button, float _x, float _y);
 	~Button();
+
+	void Draw();
 };
 

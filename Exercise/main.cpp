@@ -1,4 +1,5 @@
 #include "Sprite.h"
+#include "Button.h"
 #include <string>
 #include <vector>
 #include <filesystem>
@@ -29,14 +30,34 @@ int main()
 
 	Sprite walking = { spriteFileNames };
 
+	std::vector<std::string> bbuttons;
+	std::string path1 = "blueButton";
+	for (auto & p : std::filesystem::directory_iterator(path1)) {
+		bbuttons.push_back(p.path().string());
+	}
+
+	Button blueButton = { bbuttons, 140.f, 65.f };
+
+	std::vector<std::string> gbuttons;
+	std::string path2 = "greenButton";
+	for (auto & p : std::filesystem::directory_iterator(path2)) {
+		gbuttons.push_back(p.path().string());
+	}
+
+	Button greenButton = { gbuttons, 140.f, 115.f };
+
+	Rectangle bbuttonCollider = { 140,65,194,49 };
+
+	Rectangle gbuttonCollider = { 140,115,194,49 };
+
 	// Main game loop
 	while (!WindowShouldClose())    // Detect window close button or ESC key
 	{
-		BeginDrawing();
+		
 		ClearBackground(RAYWHITE);
 		// Update
 		framesCounter++;
-
+		if (framesSpeed < 1) { framesSpeed = 1; }
 		if (framesCounter >= (60 / framesSpeed))
 		{
 			framesCounter = 0;
@@ -56,9 +77,10 @@ int main()
 		//----------------------------------------------------------------------------------
 		// TODO: Update your variables here
 		//----------------------------------------------------------------------------------
-		
+		BeginDrawing();
+
 		DrawText("FRAME SPEED: ", 165, 210, 10, DARKGRAY);
-		DrawText(FormatText("%02i FPS", framesSpeed), 575, 210, 10, DARKGRAY);
+		DrawText(FormatText("%02i FPS", framesSpeed), 575, 190, 10, DARKGRAY);
 		DrawText("PRESS RIGHT/LEFT KEYS to CHANGE SPEED!", 290, 240, 10, DARKGRAY);
 
 		for (int i = 0; i < MAX_FRAME_SPEED; i++)
@@ -68,13 +90,35 @@ int main()
 	
 		}
 		walking.Draw();
-
+		blueButton.Draw();
+		greenButton.Draw();
 		DrawText("(c) Scarfy sprite by Eiden Marsal", screenWidth - 200, screenHeight - 20, 10, GRAY);
 		// Draw
 		//----------------------------------------------------------------------------------
 		
+		if (CheckCollisionPointRec(GetMousePosition(), bbuttonCollider)) {
+			blueButton.Draw();
+		}
+		else {
+			blueButton.frames();
+		}
+		DrawText("Frame Up", 155, 70, 35, GRAY);
 
-		
+		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(GetMousePosition(), bbuttonCollider)) {
+			framesSpeed++;
+		}
+
+		if (CheckCollisionPointRec(GetMousePosition(), gbuttonCollider)) {
+			greenButton.Draw();
+		}
+		else {
+			greenButton.frames();
+		}
+		DrawText("Frame Down", 155, 120, 35, GRAY);
+
+		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(GetMousePosition(), gbuttonCollider)) {
+			framesSpeed--;
+		}
 
 		EndDrawing();
 		//----------------------------------------------------------------------------------
