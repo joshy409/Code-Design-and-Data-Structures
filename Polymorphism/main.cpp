@@ -67,6 +67,7 @@ int main()
 			wizard.Draw();
 			if (shooting) {
 				wizard.DrawFireball();
+
 			}
 			for (auto enemy : enemies) {
 				enemy->Draw();
