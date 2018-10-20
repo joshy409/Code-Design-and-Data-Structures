@@ -64,10 +64,15 @@ int main()
 		ClearBackground(RAYWHITE);
 
 		if (wizardPlay) {
+			DrawText(std::to_string(wizard.angle).c_str(), 100, 100,35, BLACK);
+			
 			wizard.Draw();
 			if (shooting) {
 				wizard.DrawFireball();
-
+				//500 is range
+				if (sqrt(pow((wizard.fireballPosition.x - wizard.origin.x), 2) + pow((wizard.fireballPosition.y - wizard.origin.y), 2)) > 500) {
+					shooting = false;
+				}
 			}
 			for (auto enemy : enemies) {
 				enemy->Draw();
@@ -87,7 +92,6 @@ int main()
 
 			for (int i = 0; i < enemies.size(); i++) {
 				if (CheckCollisionPointRec(wizard.fireballPosition, enemies[i]->collider)) {
-					wizard.fireballPosition = Vector2{ 0, 0 };
 					removal.push_back(i);
 					shooting = false;
 					break;

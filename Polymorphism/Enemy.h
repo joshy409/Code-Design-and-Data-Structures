@@ -7,6 +7,8 @@ class Enemy
 public:
 	Vector2 position;
 	Vector2 destination;
+	Vector2 travelDistance;
+	float distance;
 	float speed;
 	Texture2D mySprite;
 	Rectangle collider;
