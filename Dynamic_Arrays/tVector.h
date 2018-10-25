@@ -80,6 +80,10 @@ public:
 		return arr[index];
 	}
 
+	const T& operator[] (size_t index) const {
+		return arr[index];
+	}
+
 	size_t size() const {                // returns current number of elements
 		return arrSize;
 	}
