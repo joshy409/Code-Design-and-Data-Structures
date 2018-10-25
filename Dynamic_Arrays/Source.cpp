@@ -4,11 +4,54 @@
 int main() {
 	tVector<int> test;
 	
-	for (int i = 0; i < 50; i++) {
-		test.push_back(i*2);
+	for (int i = 0; i < 5; i++) {
+		test.push_back(i);
 	}
 
-	for (int i = 0; i < test.size(); i++) {
-		std::cout << test.at(i) << std::endl;
+	tVector<int> original;
+	original.push_back(4);
+	original.push_back(5);
+	original.push_back(6);
+
+
+	
+	tVector<int> copy = original;
+	original.pop_back(); // removes from the original array, but not the copy
+	original.pop_back();
+	original.pop_back();
+
+	std::cout << "copy" << std::endl;
+	copy.print();
+
+	original.push_back(9);
+	original.push_back(10);
+	original.push_back(11);
+	original.push_back(11);
+
+	original[0] = 15;
+
+
+
+	copy = original;
+
+	std::cout << "original" << std::endl;
+	original.print();
+	original.pop_back(); // removes from the original array, but not the copy
+	original.pop_back();
+	original.pop_back();
+
+	copy.clear();
+	if (!copy.empty()) {
+		
+		std::cout << "copy" << std::endl;
+		std::cout << copy.capacity() << std::endl;
+		copy.print();
 	}
+	else {
+		std::cout << "no element" << std::endl;
+	}
+
+	std::cout << copy.size() << std::endl;
+	std::cout << copy.capacity() << std::endl;
+
 }
