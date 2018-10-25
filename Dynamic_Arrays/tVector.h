@@ -39,12 +39,13 @@ public:
 		return arr;
 	}     
 
-	void operator=(const tVector &vec) {  // ??
+	tVector& operator=(const tVector &vec) {  // ??
 		reserve(vec.arrCapacity);
 		for (size_t i = 0; i < vec.arrSize; i++) {
 			arr[i] = vec.arr[i];
 		}
 		arrSize = vec.arrSize;
+		return *this;
 	}
 
 	void reserve(size_t newCapacity) {   // resizes the vector to at least this many elements
