@@ -93,7 +93,7 @@ public:
 		}
 	}
 
-	bool empty() {        // Returns true if the vector contains no elements.
+	bool empty() const {        // Returns true if the vector contains no elements.
 		return arrSize == 0;
 	}
 
@@ -113,6 +113,7 @@ public:
 	}
 
 	void shrink_to_fit() { // Resizes the vector's capacity to match its size.
+		if (arrSize == arrCapacity) { return; }
 		reserve(arrSize);
 	}
 
