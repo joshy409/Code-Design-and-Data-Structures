@@ -22,7 +22,7 @@ public:
 
 	tVector(const tVector &vec) {  // copy constructor
 		arr = new T[vec.arrCapacity];
-		for (int i = 0; i < vec.size(); i++) {
+		for (size_t i = 0; i < vec.size(); i++) {
 			arr[i] = vec.arr[i];
 		}
 		arrSize = vec.size();
@@ -41,7 +41,7 @@ public:
 
 	void operator=(const tVector &vec) {  // ??
 		reserve(vec.arrCapacity);
-		for (int i = 0; i < vec.arrSize; i++) {
+		for (size_t i = 0; i < vec.arrSize; i++) {
 			arr[i] = vec.arr[i];
 		}
 		arrSize = vec.arrSize;
@@ -50,7 +50,7 @@ public:
 	void reserve(size_t newCapacity) {   // resizes the vector to at least this many elements
 		T* temp = new T[newCapacity]; // temp array with bigger size
 
-		for (int i = 0; i < arrSize; i++) { // copy the original array into new array that is bigger
+		for (size_t i = 0; i < arrSize; i++) { // copy the original array into new array that is bigger
 			temp[i] = arr[i];
 		}
 
@@ -87,7 +87,7 @@ public:
 	}
 
 	void print() const {				//print out the content of the array
-		for (int i = 0; i < arrSize; i++) {
+		for (size_t i = 0; i < arrSize; i++) {
 			std::cout << arr[i] << std::endl;
 		}
 	}
@@ -103,7 +103,7 @@ public:
 		else if (newSize > arrCapacity) {
 			reserve(newSize);
 
-			for (int i = arrSize; i < newSize; i++) { // initialize with default value
+			for (size_t i = arrSize; i < newSize; i++) { // initialize with default value
 				arr[i] = 0;
 			}
 			arrSize = newSize;
