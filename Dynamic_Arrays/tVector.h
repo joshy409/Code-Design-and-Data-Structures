@@ -61,7 +61,7 @@ public:
 
 	void push_back(const T &value) {     // adds an element to the end of the vector
 		if (arrSize >= arrCapacity) {    // if the array full
-			reserve(arrCapacity + GROWTH_FACTOR);
+			reserve((arrCapacity == 0 ? 1 : arrCapacity)  * GROWTH_FACTOR);
 		}
 		arr[arrSize] = value;
 		arrSize++;
