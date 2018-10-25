@@ -48,9 +48,9 @@ public:
 	}
 
 	void reserve(size_t newCapacity) {   // resizes the vector to at least this many elements
-		T* temp = new T[newCapacity];
+		T* temp = new T[newCapacity]; // temp array with bigger size
 
-		for (int i = 0; i < arrSize; i++) {
+		for (int i = 0; i < arrSize; i++) { // copy the original array into new array that is bigger
 			temp[i] = arr[i];
 		}
 
@@ -60,8 +60,8 @@ public:
 	}
 
 	void push_back(const T &value) {     // adds an element to the end of the vector
-		if (arrSize >= arrCapacity) {
-			reserve(arrCapacity * GROWTH_FACTOR);
+		if (arrSize >= arrCapacity) {    // if the array full
+			reserve(arrCapacity + GROWTH_FACTOR);
 		}
 		arr[arrSize] = value;
 		arrSize++;
@@ -96,32 +96,19 @@ public:
 		return arrSize == 0;
 	}
 
-	void resize(size_t newCapacity) { // Resizes the vector to contain the given number of elements.
-		if (newCapacity < arrSize) {
-			T* temp = new T[newCapacity];
-			for (int i = 0; i < newCapacity; i++) {
-				temp[i] = arr[i];
-			}
-
-			delete[] arr;
-			arr = temp;
-			arrSize = newCapacity;
-			arrCapacity = newCapacity;
+	void resize(size_t newSize) { // Resizes the vector to contain the given number of elements.
+		if (newSize < arrCapacity) {
+			arrSize = newSize;
 		}
-		else if (newCapacity > arrCapacity) {
-			T* temp = new T[newCapacity];
-			for (int i = 0; i < arrSize; i++) {
-				temp[i] = arr[i];
-			}
-			for (int i = arrSize; i < newCapacity; i++) {
-				temp[i] = 0;
-			}
+		else if (newSize > arrCapacity) {
+			reserve(newSize);
 
-			delete[] arr;
-			arr = temp;
-			arrSize = newCapacity;
-			arrCapacity = newCapacity;
+			for (int i = arrSize; i < newSize; i++) { // initialize with default value
+				arr[i] = 0;
+			}
+			arrSize = newSize;
 		}
+
 	}
 
 	void shrink_to_fit() { // Resizes the vector's capacity to match its size.
@@ -130,6 +117,8 @@ public:
 
 	void clear() {    // Empties the vector (all elements are destroyed in this process)}
 		delete[] arr;
+		arrCapacity = 0;
+		arr = new T[arrCapacity];
 		arrSize = 0;
 	}
 
