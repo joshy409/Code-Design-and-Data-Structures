@@ -4,6 +4,8 @@
 #include <filesystem>
 #include "Sprites.h"
 #include "SpellElement.h"
+#include "tForwardList.h"
+#include "tQueue.h"
 
 //int main()
 //{
@@ -96,23 +98,40 @@
 //	}
 //}
 
+//int main() {
+//	tVector<int> test;
+//	
+//	for (int i = 0; i < 5; i++) {
+//		test.push_back(i*2);
+//	}
+//
+//	test.print();
+//	std::cout << test.size() << std::endl;
+//	std::cout << test.capacity() << std::endl;
+//
+//
+//	test.erase(4);
+//
+//	test.print();
+//	std::cout << test.size() << std::endl;
+//	std::cout << test.capacity() << std::endl;
+//
+//}
+
+//node
 int main() {
-	tVector<int> test;
-	
-	for (int i = 0; i < 5; i++) {
-		test.push_back(i*2);
+	tForwardList<int> myList;
+	myList.push_front(12);
+	myList.push_front(52);
+	myList.push_front(91);
+	myList.push_front(40);
+	// print each number in the list
+	auto node = myList.first();
+	while (node != nullptr) {
+		std::cout << node->data << std::endl;
+		node = node->next;
 	}
 
-	test.print();
-	std::cout << test.size() << std::endl;
-	std::cout << test.capacity() << std::endl;
-
-
-	test.erase(4);
-
-	test.print();
-	std::cout << test.size() << std::endl;
-	std::cout << test.capacity() << std::endl;
-
+	
 }
 

@@ -32,6 +32,9 @@ tQueue<T>::tQueue()
 template<typename T>
 tQueue<T>::tQueue(size_t count, const T & value)
 {
+	for (int i = 0; i < count; i++) {
+		vec.push_back(value);
+	}
 }
 
 template<typename T>
@@ -55,7 +58,7 @@ T & tQueue<T>::front()
 template<typename T>
 T & tQueue<T>::back()
 {
-	return vec[vec.size() -1]
+	return vec[vec.size() - 1];
 }
 
 template<typename T>
@@ -67,7 +70,7 @@ const T & tQueue<T>::front() const
 template<typename T>
 const T & tQueue<T>::back() const
 {
-	return vec[vec.size() - 1]
+	return vec[vec.size() - 1];
 }
 
 template<typename T>
