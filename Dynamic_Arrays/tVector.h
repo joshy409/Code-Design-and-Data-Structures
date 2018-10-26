@@ -72,6 +72,20 @@ public:
 		arrSize -= 1;
 	}
 
+
+	void erase(size_t index) {
+		T* temp = new T[arrCapacity];
+		for (size_t i = 0; i < index; i++) { // copy the original array into new array that is bigger
+			temp[i] = arr[i];
+		}
+		for (size_t i = index + 1; i < arrCapacity; i++) { // copy the original array into new array that is bigger
+			temp[i-1] = arr[i];
+		}
+		delete[] arr;
+		arr = temp;
+		arrSize--;
+	}
+
 	T& at(size_t index) {               // returns the element at the given element
 		return arr[index];
 	}

@@ -20,7 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source.h" />
+    <ClInclude Include="SpellElement.h" />
     <ClInclude Include="Sprites.h" />
+    <ClInclude Include="tQueue.h" />
     <ClInclude Include="tStack.h" />
     <ClInclude Include="tVector.h" />
   </ItemGroup>
