@@ -118,20 +118,115 @@
 //
 //}
 
-//node
+//node forward linked list
 int main() {
 	tForwardList<int> myList;
 	myList.push_front(12);
 	myList.push_front(52);
 	myList.push_front(91);
 	myList.push_front(40);
-	// print each number in the list
+	// should print 40,91,52,12
 	auto node = myList.first();
 	while (node != nullptr) {
 		std::cout << node->data << std::endl;
 		node = node->next;
 	}
 
-	
+	myList.pop_front();
+	node = myList.first();
+	std::cout << "popped" << std::endl;
+	// should print 91,52,12
+	while (node != nullptr) {
+		std::cout << node->data << std::endl;
+		node = node->next;
+	}
+
+	myList.clear();
+	node = myList.first();
+	std::cout << "clear" << std::endl;
+	// should print nothing
+	while (node != nullptr) {
+		std::cout << node->data << std::endl;
+		node = node->next;
+	}
+
+	myList.push_front(12);
+	myList.push_front(12);
+	myList.push_front(52);
+	myList.push_front(91);
+	myList.push_front(12);
+	myList.push_front(12); 
+	myList.push_front(40);
+
+	myList.remove(12);
+	node = myList.first();
+	std::cout << "remove" << std::endl;
+	// should print 40,91,51
+	while (node != nullptr) {
+		std::cout << node->data << std::endl;
+		node = node->next;
+	}
+
+
+	tForwardList<int> copy = myList;
+	std::cout << "copy" << std::endl;
+	node = copy.first();
+	// should print 40,91,51
+	while (node != nullptr) {
+		std::cout << node->data << std::endl;
+		node = node->next;
+	}
+
+	myList.pop_front(); // remove 40 from original
+
+
+	copy.push_front(60);
+	std::cout << "copy test" << std::endl;
+	node = copy.first();
+	// should print 60,40,91,51
+	while (node != nullptr) {
+		std::cout << node->data << std::endl;
+		node = node->next;
+	}
+
+	node = myList.first();
+	std::cout << "original" << std::endl;
+	// should print 91,51
+	while (node != nullptr) {
+		std::cout << node->data << std::endl;
+		node = node->next;
+	}
+
+
+	myList = copy;
+	node = myList.first();
+	std::cout << "original" << std::endl;
+	// should print 60,40,91,51
+	while (node != nullptr) {
+		std::cout << node->data << std::endl;
+		node = node->next;
+	}
+
+	copy.pop_front(); // removes 60 from copy
+	copy.pop_front(); // removes 40 from copy
+	copy.pop_front(); // removes 92 from copy
+
+
+	node = myList.first();
+	std::cout << "original test" << std::endl;
+	// should print 60,40,91,51
+	while (node != nullptr) {
+		std::cout << node->data << std::endl;
+		node = node->next;
+	}
+
+
+	node = copy.first();
+	std::cout << "copy test" << std::endl;
+	// should print 51
+	while (node != nullptr) {
+		std::cout << node->data << std::endl;
+		node = node->next;
+	}
 }
 

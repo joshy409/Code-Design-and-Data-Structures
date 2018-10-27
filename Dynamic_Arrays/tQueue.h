@@ -46,7 +46,12 @@ void tQueue<T>::push(const T & value)
 template<typename T>
 void tQueue<T>::pop()
 {
-	vec.erase(0);
+	for (int i = 0; i < vec.size() - 1; i++) {
+		vec[i] = vec[i + 1];
+	}
+	vec.pop_back();
+	
+	//vec.erase(0);
 }
 
 template<typename T>
