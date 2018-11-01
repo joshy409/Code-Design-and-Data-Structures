@@ -72,12 +72,13 @@ tForwardList<T>::~tForwardList()
 template<typename T>
 tForwardList<T>::tForwardList(const tForwardList & other)
 {
+	//copy
 	Node<T>* copyNode = other.head;
 	head = new Node<T>{ other.head->data, nullptr }; //deep
 	Node<T>* temp = head;
 	copyNode = copyNode->next;
 	while (copyNode != nullptr) {
-		Node<T>* copy = new Node<T>{ copyNode->data, nullptr }; //shallow
+		Node<T>* copy = new Node<T>{ copyNode->data, nullptr }; //deep
 		head->next = copy;
 		head = copy;
 		copyNode = copyNode->next;
@@ -88,13 +89,16 @@ tForwardList<T>::tForwardList(const tForwardList & other)
 template<typename T>
 tForwardList<T> & tForwardList<T>::operator=(const tForwardList & rhs)
 {
+	//clears the original list 
 	this->clear();
+
+	//copy
 	Node<T>* copyNode = rhs.head;
 	head = new Node<T>{ rhs.head->data, nullptr }; //deep
 	Node<T>* temp = head;
 	copyNode = copyNode->next;
 	while (copyNode != nullptr) {
-		Node<T>* copy = new Node<T>{ copyNode->data, nullptr }; //shallow
+		Node<T>* copy = new Node<T>{ copyNode->data, nullptr }; //deep
 		head->next = copy;
 		head = copy;
 		copyNode = copyNode->next;
@@ -169,9 +173,11 @@ void tForwardList<T>::clear()
 template<typename T>
 void tForwardList<T>::resize(size_t newSize)
 {
-
+	//TODO: do this function
 }
 
+
+//this is a custom function that returns a Node so that I can print the contents of the list without using the iterators in main
 template<typename T>
 tForwardList<T>::Node<T> * tForwardList<T>::first()
 {
