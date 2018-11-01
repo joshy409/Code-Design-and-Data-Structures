@@ -34,8 +34,8 @@ void HighScoreTable::insertionSort(std::vector<HighScoreEntry>& temp)
 		while (j >= 0 && temp[j].score < tempInt) {
 			temp[j + 1].score = temp[j].score;
 			j = j - 1;
-			temp[j + 1].score = tempInt;
 		}
+		temp[j + 1].score = tempInt;
 	}
 }
 
