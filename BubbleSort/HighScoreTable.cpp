@@ -8,8 +8,8 @@ std::vector<HighScoreEntry> HighScoreTable::topNNScores(int topRows)
 	for (int i = 0; i < topRows; i++) {
 		temp.push_back(hsVector[i]);
 	}
-	bubbleSort(temp);
-
+	//bubbleSort(temp);
+	insertionSort(temp);
 	return temp;
 }
 
@@ -22,6 +22,19 @@ void HighScoreTable::bubbleSort(std::vector<HighScoreEntry>& temp)
 				temp[j].score = temp[j - 1].score;
 				temp[j - 1].score = tempint;
 			}
+		}
+	}
+}
+
+void HighScoreTable::insertionSort(std::vector<HighScoreEntry>& temp)
+{
+	for (int i = 1; i < temp.size(); i++) {
+		int tempInt = temp[i].score;
+		int j = i - 1;
+		while (j >= 0 && temp[j].score < tempInt) {
+			temp[j + 1].score = temp[j].score;
+			j = j - 1;
+			temp[j + 1].score = tempInt;
 		}
 	}
 }

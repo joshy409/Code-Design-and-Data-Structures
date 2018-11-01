@@ -9,6 +9,7 @@ public:
 	std::vector<HighScoreEntry> hsVector;
 	std::vector<HighScoreEntry> topNNScores(int topRows);
 	void bubbleSort(std::vector<HighScoreEntry>& temp);
+	void insertionSort(std::vector<HighScoreEntry>& temp);
 	bool pruneBottomNNScores(std::vector<HighScoreEntry>& temp, int bottomRows);
 
 	HighScoreTable();
