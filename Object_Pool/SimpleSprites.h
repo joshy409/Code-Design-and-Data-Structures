@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "raylib.h"
+#include "tObjectPool.h"
 class SimpleSprites
 {
 public:
@@ -10,7 +11,7 @@ public:
 	float rot;
 	Rectangle r1;//r1 = collider 
 	Texture2D texture;
-
+	bool isActive;
 	void translate(const Vector2 &delta); // move the sprites position by delta.
 	void draw(); //draw the sprite on screen
 	SimpleSprites * Clone();

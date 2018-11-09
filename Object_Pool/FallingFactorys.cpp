@@ -3,6 +3,8 @@
 size_t FallingFactorys::spriteCount = NULL;
 SimpleSprites* FallingFactorys::spriteMasters = nullptr;
 std::list<SimpleSprites*> FallingFactorys::tanks;
+tObjectPool<SimpleSprites*> FallingFactorys::pool;
+
 FallingFactorys::FallingFactorys()
 {
 }
@@ -32,6 +34,8 @@ SimpleSprites * FallingFactorys::getRandom()
 	}
 	
 	SimpleSprites* randomTank = spriteMasters[rand() % spriteCount].Clone();
+	randomTank->isActive = true;
+	pool.recycle(randomTank);
 	tanks.push_back(randomTank);
 	return randomTank;
 }
