@@ -214,12 +214,18 @@ int main() {
 
 	node = myList.first();
 	std::cout << "original test" << std::endl;
-	// should print 60,40,91,51
+	// should print 60,40,91,52
 	while (node != nullptr) {
 		std::cout << node->data << std::endl;
 		node = node->next;
 	}
 
+	std::cout << "original iterator test" << std::endl; 
+	// should print 60,40,91,52
+	for (auto it = myList.begin(); it != myList.end(); ++it)
+	{
+		std::cout << (*it) << std::endl;
+	}
 
 	node = copy.first();
 	std::cout << "copy test" << std::endl;

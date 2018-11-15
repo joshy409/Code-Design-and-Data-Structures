@@ -33,27 +33,21 @@ public:
 	Node<T>* first();					//returns the first node
 
 	//TODO: iterators
-	template<typename T>
 	class iterator
 	{
 	public:
-		template<typename T>
-		struct Node
-		{
-			T data;                     // data for the element stored
-			Node * next;                // pointer to node following this node
-		};
-		Node * cur;						// current node being operated upon
+		
+		Node<T> * cur;						// current node being operated upon
 
 		bool operator==(const iterator& rhs) const; // returns true if the iterator points to the same node
 		bool operator!=(const iterator& rhs) const; // returns false if the iterator does not point to the same node
 		T& operator*() const;                       // returns a reference to the element pointed to by the current node
 		iterator& operator++();                     // pre-increment (returns a reference to this iterator after it is incremented)
 		iterator operator++(int);                   // post-increment (returns an iterator to current node while incrementing the existing iterator)
+		
 	};
-
-	//iterator begin();
-	//iterator end();
+	iterator begin();
+	iterator end();
 };
 
 
@@ -186,6 +180,56 @@ tForwardList<T>::Node<T> * tForwardList<T>::first()
 	return head;
 }
 
+template<typename T>
+typename tForwardList<T>::iterator tForwardList<T>::begin()
+{
+	iterator temp;
+	temp.cur = this->first();
+	return temp;
+}
+
+template<typename T>
+typename tForwardList<T>::iterator tForwardList<T>::end()
+{
+	iterator temp;
+	temp.cur = NULL;
+	return temp;
+}
+
+template<typename T>
+ bool tForwardList<T>::iterator::operator==(const tForwardList<T>::iterator & rhs) const
+{
+	 return this->cur == rhs.cur;
+}
 
 
+template<typename T>
+ bool tForwardList<T>::iterator::operator!=(const tForwardList<T>::iterator & rhs) const
+{
+	 return this->cur != rhs.cur;
+}
 
+
+template<typename T>
+ T & tForwardList<T>::iterator::operator*() const
+{
+	 return (this->cur->data);
+}
+
+
+template<typename T>
+typename tForwardList<T>::iterator & tForwardList<T>::iterator::operator++()
+{
+	this->cur = this->cur->next;
+	return *this;
+}
+
+
+template<typename T>
+typename tForwardList<T>::iterator tForwardList<T>::iterator::operator++(int j)
+{
+	for (int i = 0; i < j; i++) {
+		this->cur = this->cur->next;
+	}
+	return *this;
+}

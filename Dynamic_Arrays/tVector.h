@@ -3,7 +3,7 @@ template <typename T>
 class tVector
 {
 	const static size_t GROWTH_FACTOR = 2;
-
+private:
 	T* arr;                             // pointer to underlying array
 	size_t arrSize = 0;                     // stores the number of elements currently used
 	size_t arrCapacity = 10;                 // stores the capacity of the underlying array
