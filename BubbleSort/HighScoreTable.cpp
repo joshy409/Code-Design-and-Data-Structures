@@ -18,9 +18,9 @@ void HighScoreTable::bubbleSort(std::vector<HighScoreEntry>& temp)
 	for (int i = 0; i < temp.size()-1 ; i++) {
 		for (int j = temp.size() - 1; j >= i + 1; j--) {
 			if (temp[j].score > temp[j - 1].score) {
-				int tempint = temp[j].score;
-				temp[j].score = temp[j - 1].score;
-				temp[j - 1].score = tempint;
+				HighScoreEntry tempHighScore = temp[j];
+				temp[j] = temp[j - 1];
+				temp[j - 1] = tempHighScore;
 			}
 		}
 	}
@@ -30,12 +30,13 @@ void HighScoreTable::insertionSort(std::vector<HighScoreEntry>& temp)
 {
 	for (int i = 1; i < temp.size(); i++) {
 		int tempInt = temp[i].score;
+		HighScoreEntry tempHighScore = temp[i];
 		int j = i - 1;
 		while (j >= 0 && temp[j].score < tempInt) {
-			temp[j + 1].score = temp[j].score;
+			temp[j + 1] = temp[j];
 			j = j - 1;
 		}
-		temp[j + 1].score = tempInt;
+		temp[j + 1] = tempHighScore;
 	}
 }
 
