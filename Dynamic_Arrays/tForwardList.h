@@ -43,7 +43,7 @@ public:
 		bool operator!=(const iterator& rhs) const; // returns false if the iterator does not point to the same node
 		T& operator*() const;                       // returns a reference to the element pointed to by the current node
 		iterator& operator++();                     // pre-increment (returns a reference to this iterator after it is incremented)
-		iterator operator++(int);                   // post-increment (returns an iterator to current node while incrementing the existing iterator)
+		iterator operator+(int);                   // post-increment (returns an iterator to current node while incrementing the existing iterator)
 		
 	};
 	iterator begin();
@@ -149,6 +149,15 @@ void tForwardList<T>::remove(const T & val)
 			node = node->next;
 		}
 	}
+	
+	//check the first element at the end
+	if (head->data == val) {
+		node = head;
+		head = head->next;
+		delete node;
+	}
+	
+
 }
 
 template<typename T>
@@ -226,7 +235,7 @@ typename tForwardList<T>::iterator & tForwardList<T>::iterator::operator++()
 
 
 template<typename T>
-typename tForwardList<T>::iterator tForwardList<T>::iterator::operator++(int j)
+typename tForwardList<T>::iterator tForwardList<T>::iterator::operator+(int j)
 {
 	for (int i = 0; i < j; i++) {
 		this->cur = this->cur->next;

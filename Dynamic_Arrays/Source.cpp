@@ -157,6 +157,7 @@ int main() {
 	myList.push_front(12);
 	myList.push_front(12); 
 	myList.push_front(40);
+	
 
 	myList.remove(12);
 	node = myList.first();
@@ -226,6 +227,8 @@ int main() {
 	{
 		std::cout << (*it) << std::endl;
 	}
+
+
 
 	node = copy.first();
 	std::cout << "copy test" << std::endl;
