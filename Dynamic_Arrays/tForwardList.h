@@ -31,29 +31,31 @@ public:
 	void resize(size_t newSize);    // Resizes the linked list to contain the given number of elements
 									// New elements are default-initialized
 	Node<T>* first();					//returns the first node
+
+	//TODO: iterators
+	template<typename T>
+	class iterator
+	{
+	public:
+		template<typename T>
+		struct Node
+		{
+			T data;                     // data for the element stored
+			Node * next;                // pointer to node following this node
+		};
+		Node * cur;						// current node being operated upon
+
+		bool operator==(const iterator& rhs) const; // returns true if the iterator points to the same node
+		bool operator!=(const iterator& rhs) const; // returns false if the iterator does not point to the same node
+		T& operator*() const;                       // returns a reference to the element pointed to by the current node
+		iterator& operator++();                     // pre-increment (returns a reference to this iterator after it is incremented)
+		iterator operator++(int);                   // post-increment (returns an iterator to current node while incrementing the existing iterator)
+	};
+
+	//iterator begin();
+	//iterator end();
 };
 
-//template<typename T>
-//class iterator
-//{
-//public:
-//	template<typename T>
-//	struct Node
-//	{
-//		T data;                     // data for the element stored
-//		Node * next;                // pointer to node following this node
-//	};
-//	Node * cur;						// current node being operated upon
-//
-//	bool operator==(const iterator& rhs) const; // returns true if the iterator points to the same node
-//	bool operator!=(const iterator& rhs) const; // returns false if the iterator does not point to the same node
-//	T& operator*() const;                       // returns a reference to the element pointed to by the current node
-//	iterator& operator++();                     // pre-increment (returns a reference to this iterator after it is incremented)
-//	iterator operator++(int);                   // post-increment (returns an iterator to current node while incrementing the existing iterator)
-//};
-//
-////iterator begin();
-////iterator end();
 
 template<typename T>
 tForwardList<T>::tForwardList()
