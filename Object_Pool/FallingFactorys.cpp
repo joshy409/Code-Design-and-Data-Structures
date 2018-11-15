@@ -25,7 +25,7 @@ void FallingFactorys::init()
 
 	for (int j = 0; j < 4; j++) {
 		for (int i = 0; i < 5; i++) {
-				tanks.pool.push_back( spriteMasters[j].Clone());
+				tanks.pool.push_back(spriteMasters[j].Clone());
 		}
 	}
 	
@@ -50,9 +50,8 @@ SimpleSprites * FallingFactorys::getRandom()
 		seeding = true;
 		srand(time(NULL));
 	}
-	
 
-	return *tanks.retrieve();
+	return tanks.retrieve();
 }
 
 SimpleSprites * FallingFactorys::getFromType(const std::string & _sprType)

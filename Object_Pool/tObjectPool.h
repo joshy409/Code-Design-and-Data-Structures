@@ -14,8 +14,8 @@ public:
 	std::vector<T> pool;                            // all objects stored in the pool
 	std::vector<bool> free;                     // indicates whether an object is available
 
-	T* retrieve();                      // returns a pointer to an object that will be used (returns null if none available)
-	void recycle(T* obj);               // accepts a pointer that can be used in the future
+	T retrieve();                      // returns a pointer to an object that will be used (returns null if none available)
+	void recycle(T obj);               // accepts a pointer that can be used in the future
 
 	size_t capacity();                  // returns the total number of objects that this pool can provide
 };
@@ -34,22 +34,22 @@ tObjectPool<T>::~tObjectPool()
 }
 
 template<typename T>
-T * tObjectPool<T>::retrieve()
+T  tObjectPool<T>::retrieve()
 {
 	for (int i = 0; i < pool.size(); i++) {
 		if (free[i] == false) {
 			free[i] = true;
-			return &pool[i];
+			return pool[i];
 		}
 	}
-	return &pool[0];
+	return NULL;
 }
 
 template<typename T>
-void tObjectPool<T>::recycle(T * obj)
+void tObjectPool<T>::recycle(T obj)
 {
-	//TODO: Recycle function
-	
+	auto temp = std::find(pool.begin(), pool.end(), obj);
+	free[std::distance(pool.begin(), temp)] = false;
 }
 
 template<typename T>

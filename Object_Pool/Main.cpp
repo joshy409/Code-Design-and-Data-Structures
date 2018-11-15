@@ -38,22 +38,21 @@ int main()
 
 		//creates a clone of one of the 4 tanks and sets its position to random x at the top 
 		SimpleSprites* randomTank = nullptr;
-		if (delayFrame > GetFPS()/2) { //spawns every 60 frames (.5 sec)
-			randomTank = *FallingFactorys::tanks.retrieve();
-			randomTank->pos = Vector2{ (float) (rand() % screenWidth), 50 };
-			randomTank->r1.x = randomTank->pos.x;
-			randomTank->r1.y = randomTank->pos.y;
+		if (delayFrame > GetFPS()/8) { //spawns every 15 frames (.5 sec)
+			randomTank = FallingFactorys::tanks.retrieve();
+			if (randomTank != NULL) {
+				randomTank->pos = Vector2{ (float)(rand() % screenWidth), 50 };
+			}
 			delayFrame = 0;
 		}
 
 		//draw and move all the tanks that are spawned. save the pointers to the tanks that needs to be deleted
 		for (int i = 0; i < FallingFactorys::tanks.free.size(); i++) {
-			//DrawText(std::to_string(FallingFactorys::tanks.capacity()).c_str(), 100, 100, 30, BLACK);
 			if (FallingFactorys::tanks.free[i] == true) {
-				randomTank->draw();
-				randomTank->translate(delta);
-				if (randomTank->pos.y > 1100) {
-					FallingFactorys::tanks.recycle(&randomTank);
+				FallingFactorys::tanks.pool[i]->draw();
+				FallingFactorys::tanks.pool[i]->translate(delta);
+				if (FallingFactorys::tanks.pool[i]->pos.y > 1000) {
+					FallingFactorys::tanks.recycle(FallingFactorys::tanks.pool[i]);
 				}
 			}
 		}
