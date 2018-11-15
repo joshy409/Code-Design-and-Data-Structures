@@ -20,7 +20,6 @@ int main()
 	int delayFrame = 0;
 	SetTargetFPS(120);
 	srand(time(NULL));
-	bool shooting = false;
 	//--------------------------------------------------------------------------------------
 
 	// Main game loop
@@ -38,9 +37,9 @@ int main()
 		ClearBackground(RAYWHITE);
 
 		//creates a clone of one of the 4 tanks and sets its position to random x at the top 
-
+		SimpleSprites* randomTank = nullptr;
 		if (delayFrame > GetFPS()/2) { //spawns every 60 frames (.5 sec)
-			SimpleSprites* randomTank = FallingFactorys::getRandom();
+			randomTank = *FallingFactorys::tanks.retrieve();
 			randomTank->pos = Vector2{ (float) (rand() % screenWidth), 50 };
 			randomTank->r1.x = randomTank->pos.x;
 			randomTank->r1.y = randomTank->pos.y;
@@ -48,24 +47,19 @@ int main()
 		}
 
 		//draw and move all the tanks that are spawned. save the pointers to the tanks that needs to be deleted
-		std::stack<SimpleSprites*> removeThese;
-		for (auto &tank : FallingFactorys::tanks) {
-			DrawText(std::to_string(FallingFactorys::tanks.size()).c_str(), 100, 100, 30, BLACK);
-			tank->draw();
-			tank->translate(delta);
-			if (tank->pos.y > 1100) {
-				removeThese.push(tank);
+		for (int i = 0; i < FallingFactorys::tanks.free.size(); i++) {
+			//DrawText(std::to_string(FallingFactorys::tanks.capacity()).c_str(), 100, 100, 30, BLACK);
+			if (FallingFactorys::tanks.free[i] == true) {
+				randomTank->draw();
+				randomTank->translate(delta);
+				if (randomTank->pos.y > 1100) {
+					FallingFactorys::tanks.recycle(&randomTank);
+				}
 			}
 		}
 
 		delayFrame++;
 
-		//delete all the tanks that are outside of the screen to clear memory space
-		for (int i = 0; removeThese.size(); i++) {
-			FallingFactorys::tanks.remove(removeThese.top());
-			delete removeThese.top();
-			removeThese.pop();
-		}
 
 
 		EndDrawing();
