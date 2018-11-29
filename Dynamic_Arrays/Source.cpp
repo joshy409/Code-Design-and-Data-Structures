@@ -221,6 +221,10 @@ int main() {
 		node = node->next;
 	}
 
+
+	myList.resize(10);
+
+	std::cout << "ahhhh" << std::endl;
 	std::cout << "original iterator test" << std::endl; 
 	// should print 60,40,91,52
 	for (auto it = myList.begin(); it != myList.end(); ++it)

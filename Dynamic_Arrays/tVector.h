@@ -123,7 +123,7 @@ public:
 			reserve(newSize);
 
 			for (size_t i = arrSize; i < newSize; i++) { // initialize with default value
-				arr[i] = 0;
+				arr[i] = T();
 			}
 			arrSize = newSize;
 		}

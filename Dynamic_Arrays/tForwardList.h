@@ -178,7 +178,17 @@ void tForwardList<T>::clear()
 template<typename T>
 void tForwardList<T>::resize(size_t newSize)
 {
+	Node<T>* temp = this->head;
 	//TODO: do this function
+	for (int i = 0; i < newSize; i++) {
+		if (temp->next == nullptr) {
+			Node<T>* newNode = new Node<T>{T(),nullptr};
+			temp->next = newNode;
+		}
+		else {
+			temp = temp->next;
+		}
+	}
 }
 
 
