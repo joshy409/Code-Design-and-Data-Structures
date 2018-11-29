@@ -258,8 +258,10 @@ typename tForwardList<T>::iterator & tForwardList<T>::iterator::operator++()
 template<typename T>
 typename tForwardList<T>::iterator tForwardList<T>::iterator::operator+(int j)
 {
+	iterator temp;
+	temp.cur = this->cur;
 	for (int i = 0; i < j; i++) {
-		this->cur = this->cur->next;
+		temp.cur = temp.cur->next;
 	}
-	return *this;
+	return temp;
 }

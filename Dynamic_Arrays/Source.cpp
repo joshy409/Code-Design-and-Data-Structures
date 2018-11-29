@@ -241,6 +241,9 @@ int main() {
 	}
 
 
+	std::cout << *it << std::endl;
+
+
 	node = copy.first();
 	std::cout << "copy test" << std::endl;
 	// should print 51
