@@ -222,7 +222,7 @@ int main() {
 	}
 
 
-	myList.resize(10);
+	myList.resize(6);
 
 	std::cout << "ahhhh" << std::endl;
 	std::cout << "original iterator test" << std::endl; 
@@ -232,6 +232,13 @@ int main() {
 		std::cout << (*it) << std::endl;
 	}
 
+	auto it = myList.begin()+1;
+	if (it == myList.begin()) {
+		std::cout << "true" << std::endl;
+	}
+	else {
+		std::cout << "false" << std::endl;
+	}
 
 
 	node = copy.first();
